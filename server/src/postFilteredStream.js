@@ -8,7 +8,7 @@ const token = process.env.BEARER_TOKEN;
 
 const endpointUrl = 'https://api.twitter.com/2/tweets/search/stream/rules'
 
-async function getRequest() {
+async function postRequest() {
 
     // Edit query parameters below
     const params = {
@@ -36,7 +36,7 @@ async function getRequest() {
 
     try {
         // Make request
-        const response = await getRequest();
+        const response = await postRequest();
         console.log(response)
 
     } catch(e) {
