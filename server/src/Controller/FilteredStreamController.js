@@ -2,6 +2,10 @@ require('dotenv/config');
 const needle = require('needle');
 const token = process.env.BEARER_TOKEN;
 const endpointUrl = 'https://api.twitter.com/2/tweets/search/stream/rules'
+const rules = [
+  { 'value': 'dog has:images -is:retweet', 'tag': 'dog pictures' },
+  { 'value': 'cat has:images -grumpy', 'tag': 'cat pictures' },
+]
 
 module.exports = {
 
@@ -28,12 +32,7 @@ module.exports = {
   async store() {
     try {
       const params = {
-        "add": [
-          { "value": "cat has:media", "tag": "cats with media" },
-          { "value": "cat has:media -grumpy", "tag": "happy cats with media" },
-          { "value": "meme", "tag": "funny things" },
-          { "value": "meme has:images" }
-        ]
+        "add": rules
       }
 
       const res = await needle('post', endpointUrl, params, {
@@ -56,14 +55,12 @@ module.exports = {
   },
 
   async delete() {
+    const rules = await this.index()
+    if (!Array.isArray(rules.data)) {
+      return null;
+    }
 
-    const ids = [
-      "1307774743534333965", 
-      "1307774743534333964", 
-      "1307774743534333966",
-      "1307774743534333963",
-      "1308505097438101516"
-    ];
+    const ids = rules.data.map(rule => rule.id);
 
     const data = {
       "delete": {
