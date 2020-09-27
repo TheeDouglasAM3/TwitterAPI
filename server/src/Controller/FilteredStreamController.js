@@ -3,8 +3,9 @@ const needle = require('needle');
 const token = process.env.BEARER_TOKEN;
 const endpointUrl = 'https://api.twitter.com/2/tweets/search/stream/rules'
 const rules = [
-  { 'value': 'dog has:images -is:retweet', 'tag': 'dog pictures' },
-  { 'value': 'cat has:images -grumpy', 'tag': 'cat pictures' },
+  // { 'value': 'dog has:images -is:retweet', 'tag': 'dog pictures' },
+  // { 'value': 'cat has:images -grumpy', 'tag': 'cat pictures' },
+  { 'value': 'covid-19', 'tag': 'covid-19' },
 ]
 
 module.exports = {
