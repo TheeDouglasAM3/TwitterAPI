@@ -19,7 +19,8 @@
     "express": "^4.17.1",
     "got": "^11.7.0",
     "needle": "^2.5.2",
-    "oauth-1.0a": "^2.2.6"
+    "oauth-1.0a": "^2.2.6",
+    "socket.io": "^2.3.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
